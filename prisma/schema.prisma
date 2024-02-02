@@ -1,0 +1,48 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "postgresql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model News {
+  id        String   @id @default(uuid())
+  title     String
+  content   String
+  imageUrl  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Bhajans {
+  id        String   @id @default(uuid())
+  title     String
+  audioUrl  String
+  // tags
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Ebooks {
+  id         String   @id @default(uuid())
+  title      String
+  price      Int
+  desription String
+  pdfUrl     String
+  // tags
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Admins {
+  email     String   @id
+  role      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
